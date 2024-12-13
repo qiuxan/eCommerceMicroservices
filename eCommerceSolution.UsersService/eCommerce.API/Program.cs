@@ -8,8 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure();
 builder.Services.AddCore();
 
+//add controllers
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+//Routing
+app.UseRouting();
+
+//Auth
+app.UseAuthentication();
+app.UseAuthorization();
+
+//map controllers
+app.MapControllers();
 
 app.Run();
