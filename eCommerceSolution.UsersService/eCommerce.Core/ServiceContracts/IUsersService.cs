@@ -4,7 +4,7 @@ namespace eCommerce.Core.ServiceContracts;
 /// <summary>
 /// Contract for User Service that contains use cases for user management.
 /// </summary>
-internal interface IUsersService
+public interface IUsersService
 {
     /// <summary>
     /// Method to handle user login use case and returns an AuthenticationResponse object that contains the status of the login

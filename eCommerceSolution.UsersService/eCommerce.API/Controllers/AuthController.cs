@@ -10,9 +10,9 @@ namespace eCommerce.API.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly UsersService _usersService;
+    private readonly IUsersService _usersService;
 
-    public AuthController(UsersService usersService)
+    public AuthController(IUsersService usersService)
     {
         _usersService = usersService;
     }
