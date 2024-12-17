@@ -1,6 +1,6 @@
 ﻿
 namespace eCommerce.Core.DTO;
-internal record LoginRequest(
+public record LoginRequest(
     string? Email,
     string? Password
     );

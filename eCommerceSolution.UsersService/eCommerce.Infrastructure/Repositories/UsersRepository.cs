@@ -9,7 +9,7 @@ namespace eCommerce.Infrastructure.Repositories;
 /// It will be internal class because it is not exposed to the outer world
 /// 
 /// </summary>
-internal class UsersRepository : IUserRepository
+internal class UsersRepository : IUsersRepository
 {
     public async Task<ApplicationUser?> AddUser(ApplicationUser user)
     {

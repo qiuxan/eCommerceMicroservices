@@ -4,7 +4,7 @@ namespace eCommerce.Core.RepositoryContracts;
 /// <summary>
 /// Contract to be implemented by the User Repository that contains the data access logic of user data store
 /// </summary>
-public interface IUserRepository
+public interface IUsersRepository
 {
     /// <summary>
     /// Method to add user to the data store and return the added user

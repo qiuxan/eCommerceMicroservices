@@ -18,7 +18,7 @@ public static class DependencyInjection
 
         //infrastructure services often include data access, caching and other low-level components
 
-        services.AddSingleton<IUserRepository, UsersRepository>();
+        services.AddSingleton<IUsersRepository, UsersRepository>();
 
         return services;
     }
