@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using eCommerce.Core.DTO;
 using eCommerce.Core.Entities;
 using eCommerce.Core.ServiceContracts;
@@ -8,10 +9,13 @@ namespace eCommerce.Core.Services;
 public class UsersService: IUsersService
 {
     private readonly IUsersRepository _usersRepository;
+    private readonly IMapper _mapper;
 
-    public UsersService(IUsersRepository usersRepository)
+    public UsersService(IUsersRepository usersRepository, IMapper mapper)
     {
         _usersRepository = usersRepository;
+        _mapper = mapper;
+
     }
 
     public async Task<AuthenticationResponse?> Login(LoginRequest loginRequest)
@@ -24,14 +28,16 @@ public class UsersService: IUsersService
             return null;
         }
 
-        return new AuthenticationResponse(
-            user.UserId,
-            user.Email,
-            user.PersionName,
-            user.Password,
-            "token",
-            true
-        );
+        // return new AuthenticationResponse(
+        //     user.UserId,
+        //     user.Email,
+        //     user.PersionName,
+        //     user.Password,
+        //     "token",
+        //     true
+        // );
+
+        return _mapper.Map<AuthenticationResponse>(user) with{Success = true, Token = "token"};
     }
 
     public async Task<AuthenticationResponse?> Register(RegisterRequest registerRequest)
@@ -53,14 +59,15 @@ public class UsersService: IUsersService
             return null;
         }
 
-        return new AuthenticationResponse(
-            registerUser.UserId,
-            registerUser.Email,
-            registerUser.PersionName,
-            registerUser.Password,
-            "token",
-            true
-            );
+        // return new AuthenticationResponse(
+        //     registerUser.UserId,
+        //     registerUser.Email,
+        //     registerUser.PersionName,
+        //     registerUser.Password,
+        //     "token",
+        //     true
+        //     );
+        return _mapper.Map<AuthenticationResponse>(registerUser) with { Success = true, Token = "token" };
 
     }
 }
