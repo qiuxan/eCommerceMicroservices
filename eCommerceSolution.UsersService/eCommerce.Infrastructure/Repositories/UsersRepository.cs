@@ -2,6 +2,7 @@
 using eCommerce.Core.DTO;
 using eCommerce.Core.Entities;
 using eCommerce.Core.RepositoryContracts;
+using eCommerce.Infrastructure.DbContext;
 
 namespace eCommerce.Infrastructure.Repositories;
 
@@ -11,6 +12,13 @@ namespace eCommerce.Infrastructure.Repositories;
 /// </summary>
 internal class UsersRepository : IUsersRepository
 {
+    private readonly DapperDbContext _dbContext;
+
+    public UsersRepository(DapperDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
     public async Task<ApplicationUser?> AddUser(ApplicationUser user)
     {
         //dummy implementation
