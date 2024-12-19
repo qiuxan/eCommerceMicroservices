@@ -1,4 +1,5 @@
 ﻿
+using Dapper;
 using eCommerce.Core.DTO;
 using eCommerce.Core.Entities;
 using eCommerce.Core.RepositoryContracts;
@@ -24,6 +25,18 @@ internal class UsersRepository : IUsersRepository
         //dummy implementation
 
         user.UserId = Guid.NewGuid();
+
+        //SQL query to insert the user into the database "Users" table
+
+        string query = "INSERT INTO public.\"Users\"(\"UserID\",\"Email\",\"PersonName\",\"Gender\",\"Password\") VALUES(@UserID, @Email, @PersonName, @Gender, @Password)";
+
+        int rowCountAffected = await _dbContext.DbConnection.ExecuteAsync(query,user);
+
+        if (rowCountAffected == 0)
+        {
+            return null;
+        }
+
         return user;
     }
 
