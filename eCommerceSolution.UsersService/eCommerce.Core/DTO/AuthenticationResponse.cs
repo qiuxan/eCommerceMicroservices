@@ -3,7 +3,7 @@
 public record AuthenticationResponse(
     Guid UserId,
     string? Email,
-    string? PersionName,
+    string? PersonName,
     string? Gender,
     string? Token,
     bool Success

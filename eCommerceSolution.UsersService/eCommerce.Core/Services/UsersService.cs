@@ -31,7 +31,7 @@ public class UsersService: IUsersService
         // return new AuthenticationResponse(
         //     user.UserId,
         //     user.Email,
-        //     user.PersionName,
+        //     user.PersonName,
         //     user.Password,
         //     "token",
         //     true
@@ -47,7 +47,7 @@ public class UsersService: IUsersService
         {
             Email = registerRequest.Email,
             Password = registerRequest.Password,
-            PersionName = registerRequest.PersionName,
+            PersonName = registerRequest.PersonName,
             Gender = registerRequest.Gender.ToString(),
 
         };
@@ -62,7 +62,7 @@ public class UsersService: IUsersService
         // return new AuthenticationResponse(
         //     registerUser.UserId,
         //     registerUser.Email,
-        //     registerUser.PersionName,
+        //     registerUser.PersonName,
         //     registerUser.Password,
         //     "token",
         //     true

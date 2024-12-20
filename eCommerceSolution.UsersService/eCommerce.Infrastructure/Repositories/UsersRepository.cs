@@ -47,7 +47,7 @@ internal class UsersRepository : IUsersRepository
             UserId = Guid.NewGuid(),
             Email = email,
             Password = password,
-            PersionName = "John Doe",
+            PersonName = "John Doe",
             Gender = GenderOptions.Male.ToString()
         };
     }
