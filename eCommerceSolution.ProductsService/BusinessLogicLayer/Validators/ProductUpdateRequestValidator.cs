@@ -13,7 +13,7 @@ public class ProductUpdateRequestValidator : AbstractValidator<ProductUpdateRequ
             .NotEmpty().WithMessage("Product Name can't be blank");
 
         RuleFor(p => p.Category)
-            .IsInEnum();
+            .IsInEnum().WithMessage("Category can't be blank");
 
         RuleFor(p => p.UnitPrice)
             .InclusiveBetween(0, double.MaxValue).WithMessage($"Unit Price must be between 0 and {double.MaxValue}");
