@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using DataAccessLayer.Entities;
+using eCommerce.DataAccessLayer.Entities;
 using eCommerce.BusinessLogicLayer.DTO;
 
 namespace eCommerce.BusinessLogicLayer.ServiceContracts;
