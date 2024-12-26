@@ -29,17 +29,31 @@ public class ProductsService: IProductsService
 
     public async Task<List<ProductResponse?>> GetProducts()
     {
-        throw new NotImplementedException();
+        IEnumerable<Product> products = await _productsRepository.GetProducts();
+
+        IEnumerable<ProductResponse?> productResponses = _mapper.Map<IEnumerable<ProductResponse>>(products);
+
+        return productResponses.ToList();
+
     }
 
     public async Task<List<ProductResponse?>> GetProductsByCondition(Expression<Func<Product, bool>> conditionExpression)
     {
-        throw new NotImplementedException();
+        IEnumerable<Product> products = await _productsRepository.GetProductsByCondition(conditionExpression);
+        IEnumerable<ProductResponse> productResponses = _mapper.Map<IEnumerable<ProductResponse>>(products);
+
+        return productResponses.ToList();
     }
 
     public async Task<ProductResponse?> GetProductByCondition(Expression<Func<Product, bool>> conditionExpression)
     {
-        throw new NotImplementedException();
+        Product? product = await _productsRepository.GetProductByCondition(conditionExpression);
+
+        if (product is null) return null;
+
+        ProductResponse productResponse = _mapper.Map<ProductResponse>(product);
+
+        return productResponse;
     }
 
     public async Task<ProductResponse?> AddProduct(ProductAddRequest ProductAddRequest)
@@ -76,11 +90,39 @@ public class ProductsService: IProductsService
 
     public async Task<ProductResponse?> UpdateProduct(ProductUpdateRequest ProductUpdateRequest)
     {
-        throw new NotImplementedException();
+        Product? exsitingProduct = await _productsRepository
+            .GetProductByCondition(p => p.ProductID == ProductUpdateRequest.ProductID);
+
+        if (exsitingProduct is null) throw new ArgumentException("Product does not exist");
+
+        // validate the request using FluentValidation
+        ValidationResult validationResult = await _productUpdateRequestValidator.ValidateAsync(ProductUpdateRequest);
+        if (!validationResult.IsValid) {
+            string errors = string.Join(", ", validationResult.Errors.Select(error => error.ErrorMessage)); //Error1,Error2,Error3,...
+            throw new ArgumentException(errors);
+        }
+
+        // map the ProductUpdateRequest to Product
+        Product productInput = _mapper.Map<Product>(ProductUpdateRequest);
+
+        // update the product in the database
+        Product? updatedProduct = await _productsRepository.UpdateProduct(productInput);
+
+        if (updatedProduct is null) return null;
+
+        // map the updated product to ProductResponse
+        ProductResponse updatedProductResponse = _mapper.Map<ProductResponse>(updatedProduct);
+
+        return updatedProductResponse;
+
     }
 
     public async Task<bool> DeleteProduct(Guid ProductID)
     {
-        throw new NotImplementedException();
+        Product? product = await _productsRepository.GetProductByCondition(p => p.ProductID == ProductID);
+        if (product is null) return false;
+
+        return await _productsRepository.DeleteProduct(ProductID);
+
     }
 }
