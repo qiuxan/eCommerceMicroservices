@@ -7,7 +7,7 @@ using eCommerce.DataAccessLayer.RepositoryContracts;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace BusinessLogicLayer.Services;
+namespace eCommerce.BusinessLogicLayer.Services;
 public class ProductsService: IProductsService
 {
     private readonly IValidator<ProductAddRequest> _productAddRequestValidator;

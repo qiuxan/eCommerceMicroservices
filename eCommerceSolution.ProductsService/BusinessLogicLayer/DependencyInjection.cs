@@ -1,17 +1,22 @@
-﻿using eCommerce.BusinessLogicLayer.Mappers;
+﻿﻿using eCommerce.BusinessLogicLayer.Mappers;
+using eCommerce.BusinessLogicLayer.ServiceContracts;
 using Microsoft.Extensions.DependencyInjection;
+using eCommerce.BusinessLogicLayer.Validators;
+using FluentValidation;
 
-namespace eCommerce.ProductsMicroService.BusinessLogicLayer;
+namespace eCommerce.ProductsService.BusinessLogicLayer;
+
 public static class DependencyInjection
 {
-    public static IServiceCollection AddBusinessLogicLayer(this IServiceCollection services)
-    {
-        //TODO: Add data Access Layer services into the IoC container
-        // add mappper services into the IoC container
-        services.AddAutoMapper(typeof(ProductAddRequestToProductMappingProfile)// once is enough, it will scan the whole assembly with the type of ProductAddRequestToProductMappingProfile which is Profile
-            .Assembly);
+  public static IServiceCollection AddBusinessLogicLayer(this IServiceCollection services)
+  {
+    //TO DO: Add Business Logic Layer services into the IoC container
+    services.AddAutoMapper(typeof(ProductAddRequestToProductMappingProfile).Assembly);
 
-        return services;
-    }
+    services.AddValidatorsFromAssemblyContaining<ProductAddRequestValidator>();
+
+    services.AddScoped<IProductsService, eCommerce.BusinessLogicLayer.Services.ProductsService>();
+
+    return services;
+  }
 }
-
