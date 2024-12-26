@@ -3,7 +3,7 @@ using eCommerce.DataAccessLayer.Entities;
 using eCommerce.BusinessLogicLayer.DTO;
 
 namespace eCommerce.BusinessLogicLayer.ServiceContracts;
-public interface IProductService
+public interface IProductsService
 {
     /// <summary>
     /// Retrieves a list of products from the product repository.
