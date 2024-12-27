@@ -24,15 +24,24 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
 }); // add options to configure the JSON serializer and it is different from using controller options as it is using minimal API
 
+// add swagger services
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.UseExceptionHandlingMiddleware();
 app.UseRouting();
 
+//Enable Swagger
+app.UseSwagger();
+app.UseSwaggerUI();
+
 //Auth
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 app.MapProductAPIEndpoints();
