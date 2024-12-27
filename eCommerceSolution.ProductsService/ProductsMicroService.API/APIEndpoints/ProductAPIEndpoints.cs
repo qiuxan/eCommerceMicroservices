@@ -66,7 +66,7 @@ public static class ProductAPIEndpoints
             return Results.Problem("Error in adding product");
 
         });
-
+        //PUT /api/products
         app.MapPut("/api/products", async (IValidator<ProductUpdateRequest> ProductUpdateValidator, IProductsService productsService, ProductUpdateRequest productUpdateRequest) =>
         {
 

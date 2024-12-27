@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "2cc930d1-1253-49be-b696-83721249b209",
+		"name": "eCommerceMicroservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5028262"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Email\": \"example@example.com\",\r\n  \"PersonName\": \"John Doe\",\r\n  \"Gender\": \"Male\",\r\n  \"Password\": \"securepassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7206/api/auth/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7206",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Email\": \"example@example.com\",\r\n  \"Password\": \"securepassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7206/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7206",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginEmpty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Email\": \"\",\r\n  \"Password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7206/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7206",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GetAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7237/api/products",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7237",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"Add Electronics 5\",\r\n    \"category\": \"Electronics\",\r\n    \"unitPrice\": 499.99,\r\n    \"quantityInstock\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7237/api/products",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7237",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindProductByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7237/api/products/search/product-id/10d7b110-ecdb-4921-85a4-58a5d1b32bf4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7237",
+							"path": [
+								"api",
+								"products",
+								"search",
+								"product-id",
+								"10d7b110-ecdb-4921-85a4-58a5d1b32bf4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"1c7367ac-f1f7-48d6-a56f-cbce9d2e58c8\",\r\n    \"productName\": \"Add Electronics Updated\",\r\n    \"category\": \"Electronics\",\r\n    \"unitPrice\": 499.99,\r\n    \"quantityInstock\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7237/api/products",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7237",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"1c7367ac-f1f7-48d6-a56f-cbce9d2e58c8\",\r\n    \"productName\": \"Add Electronics Updated\",\r\n    \"category\": \"Electronics\",\r\n    \"unitPrice\": 499.99,\r\n    \"quantityInstock\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7237/api/products/1c7367ac-f1f7-48d6-a56f-cbce9d2e58c8",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7237",
+							"path": [
+								"api",
+								"products",
+								"1c7367ac-f1f7-48d6-a56f-cbce9d2e58c8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
